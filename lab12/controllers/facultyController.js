@@ -21,6 +21,26 @@ exports.getallFacultybyId = async (req,res)=>{
     }
 }
 
+exports.insertFaculty = async (req, res) => {
+    try {
+        const { id, name } = req.body;
+
+        const newFaculty = new Faculty({
+            id,
+            name
+        });
+
+        const savedFaculty = await newFaculty.save();
+
+        res.status(201).json({
+            message: "Faculty inserted successfully",
+            data: savedFaculty
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 exports.deleteFaculty = async (req,res)=>{
     try {
         const {id} = req.params

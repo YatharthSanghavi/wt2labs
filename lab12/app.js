@@ -1,8 +1,11 @@
 const express = require("express")
 const mongoose = require('./config/db');
 const FacultyRoutes = require("./routes/facultyRoutes");
+const cors = require('cors')
 
 const app = express()
+
+app.use(cors())
 
 app.use(express.json());
 app.use('/faculty',FacultyRoutes);
